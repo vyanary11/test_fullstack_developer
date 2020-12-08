@@ -1,0 +1,136 @@
+@font-face {
+    font-family: montserrat;
+    src: url("../../fonts/montserrat/Montserrat-Regular.otf");
+}
+@font-face {
+    font-family: roboto;
+    src: url("../../fonts/roboto/Roboto-Regular.ttf");
+}
+body {
+    font-family: roboto;
+    padding-top: 6.5rem;
+}
+
+/* Navbar */
+.navbar{
+    border-bottom: 1px solid #dddddd;
+}
+
+/* Feature */
+.feature{
+    padding-top: 40px;
+}
+
+.divider {
+    color: #dddddd;
+    margin: 3rem 0;
+}
+
+
+.heading {
+    font-family: montserrat;
+    font-weight: bold;
+}
+
+/* marketing */
+.icon-marketing{
+    height: 200px;
+}
+
+/* footer */
+footer .list-unstyled li{
+    color: #FFF;
+}
+footer .list-unstyled li a{
+    text-decoration: none;
+    color: #FFF;
+}
+
+footer .list-unstyled li a:hover{
+    text-decoration: none;
+    outline: none;
+    color: #c4c4c4;
+}
+
+.ribbon {
+    position: absolute;
+    left: -5px; top: -5px;
+    z-index: 1;
+    overflow: hidden;
+    width: 75px; height: 75px;
+    text-align: right;
+}
+.ribbon span {
+    font-size: 10px;
+    font-weight: bold;
+    color: #FFF;
+    text-transform: uppercase;
+    text-align: center;
+    line-height: 20px;
+    transform: rotate(-45deg);
+    -webkit-transform: rotate(-45deg);
+    width: 100px;
+    display: block;
+    background: #79A70A;
+    background: linear-gradient(#387909 0%, #32ab40 100%);
+    box-shadow: 0 3px 10px -5px rgba(0, 0, 0, 1);
+    position: absolute;
+    top: 19px; left: -21px;
+}
+.ribbon span::before {
+    content: "";
+    position: absolute; left: 0px; top: 100%;
+    z-index: -1;
+    border-left: 3px solid #32ab40;
+    border-right: 3px solid transparent;
+    border-bottom: 3px solid transparent;
+    border-top: 3px solid #32ab40;
+}
+.ribbon span::after {
+    content: "";
+    position: absolute; right: 0px; top: 100%;
+    z-index: -1;
+    border-left: 3px solid transparent;
+    border-right: 3px solid #32ab40;
+    border-bottom: 3px solid transparent;
+    border-top: 3px solid #32ab40;
+}
+
+.list-unstyled li{
+    margin-bottom: 0.5rem;
+}
+
+.nav-top li{
+    line-height: 0.5rem;
+}
+.nav-top li a{
+    color: #000;
+    font-size: 14px;
+}
+
+.nav-top li a:hover{
+    color: rgba(0,0,0,.5);
+}
+
+.nav-utama li{
+    line-height: 2rem;
+}
+
+.navbar-light .navbar-nav .nav-link {
+    color: #000;
+}
+
+.navbar-light .navbar-nav .nav-link:hover {
+    color: rgba(0,0,0,.5);
+}
+.button-inside-container{
+    position:relative;
+}
+.button-inside{
+    position:absolute;
+    right: 5px;
+    top: 3px;
+}
+.button-inside:hover{
+    cursor:pointer;
+}

@@ -1,0 +1,64 @@
+version: "3.7"
+services:
+  app:
+    build:
+      args:
+        user: vyan
+        uid: 1000
+      context: ./
+      dockerfile: Dockerfile
+    image: vyan-test-fullstack-developer
+    container_name: vyan-test-fullstack-developer-app
+    restart: unless-stopped
+    working_dir: /var/www
+    volumes:
+      - ./boxbilling:/var/www/boxbilling
+      - ./landing-page:/var/www/landing-page
+    networks:
+      - vyan-test-fullstack-developer
+
+  db:
+    image: mysql:5.7
+    container_name: landing-page-db
+    restart: unless-stopped
+    environment:
+      MYSQL_DATABASE: vyan_test_landing_page
+      MYSQL_ROOT_PASSWORD: vyanarypass
+      MYSQL_PASSWORD: vyanarypass
+      MYSQL_USER: vyan
+      SERVICE_TAGS: dev
+      SERVICE_NAME: mysql
+    networks:
+      - vyan-test-fullstack-developer
+  
+  db-boxbilling:
+    image: mysql:5.7
+    container_name: boxbilling-db
+    restart: unless-stopped
+    environment:
+      MYSQL_DATABASE: vyan_test_boxbilling
+      MYSQL_ROOT_PASSWORD: vyanarypass
+      MYSQL_PASSWORD: vyanarypass
+      MYSQL_USER: vyan
+      SERVICE_TAGS: dev
+      SERVICE_NAME: mysql
+    networks:
+      - vyan-test-fullstack-developer
+
+  nginx:
+    image: nginx:alpine
+    container_name: nginx
+    restart: unless-stopped
+    ports:
+      - 8000:80
+      - 8001:81
+    volumes:
+      - ./boxbilling:/var/www/boxbilling
+      - ./landing-page:/var/www/landing-page
+      - ./docker-compose/nginx:/etc/nginx/conf.d/
+    networks:
+      - vyan-test-fullstack-developer
+
+networks:
+  vyan-test-fullstack-developer:
+    driver: bridge
