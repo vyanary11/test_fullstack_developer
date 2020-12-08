@@ -11,9 +11,6 @@ services:
     container_name: vyan-test-fullstack-developer-app
     restart: unless-stopped
     working_dir: /var/www
-    volumes:
-      - ./boxbilling:/var/www/boxbilling
-      - ./landing-page:/var/www/landing-page
     networks:
       - vyan-test-fullstack-developer
 
@@ -53,8 +50,8 @@ services:
       - 8000:80
       - 8001:81
     volumes:
-      - ./boxbilling:/var/www/boxbilling
-      - ./landing-page:/var/www/landing-page
+      # - ./boxbilling:/var/www/boxbilling
+      # - ./landing-page:/var/www/landing-page
       - ./docker-compose/nginx:/etc/nginx/conf.d/
     networks:
       - vyan-test-fullstack-developer

@@ -39,13 +39,14 @@ RUN { \
 } > /usr/local/etc/php/conf.d/opcache-recommended.ini
 
 ENV BOXBILLING_VERSION 4.21
-VOLUME /var/www/boxbilling
+VOLUME ./boxbilling:/var/www/boxbilling
 
-RUN mkdir -p /usr/src/boxbilling \
- && cd /usr/src/boxbilling \
+RUN mkdir -p /var/www/boxbilling \
+ && cd /var/www/boxbilling \
  && curl -fsSL -o boxbilling.zip \
       "https://github.com/boxbilling/boxbilling/releases/download/${BOXBILLING_VERSION}/BoxBilling.zip" \
  && unzip boxbilling.zip \
+ && cp bb-config-sample.php bb-config.php \
  && rm boxbilling.zip
 
 # Set the locale
@@ -69,5 +70,13 @@ RUN mkdir -p /home/$user/.composer && \
 # Set working directory
 WORKDIR /var/www
 
+RUN mkdir -p /var/www/landing-page \ 
+    && cd /var/www/landing-page \
+    && git clone https://github.com/vyanary11/test_fullstack_developer_landing_page.git . \
+    && cp .env.example .env \
+    && composer install && npm install && npm run dev && php artisan key:generate && php artisan route:cache && php artisan cache:clear && php artisan config:cache
+
 USER $user
+COPY ./entrypoint.sh /tmp    
+ENTRYPOINT ["/tmp/entrypoint.sh"]
 CMD ["php-fpm"]
