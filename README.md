@@ -8,7 +8,7 @@
 7. open http://localhost:8001 for BoxBilling
 
 # Credential database for BoxBilling
-- host : db-billing
+- host : db-boxbilling
 - user : vyan
 - password : vyanarypass
 - database name : vyan_test_boxbilling
